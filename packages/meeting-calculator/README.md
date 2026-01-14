@@ -1,66 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) and configured for Cloudflare Pages deployment.
+# Meeting Cost Calculator
 
-## Getting Started
+A modern web application that calculates the real-time cost of meetings based on attendee salaries and hourly rates.
 
-First, run the development server:
+## Features
+
+### Core Functionality
+- **Real-time cost tracking** - Watch meeting costs accumulate every second
+- **Multiple attendees** - Add unlimited participants with individual rates
+- **AI salary estimation** - Use Claude AI to estimate salaries based on job title, location, and experience
+- **Manual entry** - Enter annual salary or hourly rate directly
+- **Overhead multiplier** - Account for benefits, taxes, and office costs (default 1.5x)
+
+### Smart Features
+- **Meeting templates** - Save and reuse common meeting configurations
+- **Meeting history** - Track past meetings with detailed analytics
+- **Cost comparisons** - See how meeting costs compare to real-world items
+- **Meeting grades** - Get efficiency scores (A-F) based on duration, attendees, and cost
+- **Keyboard shortcuts** - Space to start/pause, R to reset, Esc to close modals
+- **Auto-save** - All data persists in browser localStorage
+
+### Visual Feedback
+- **Color-coded costs** - Green ($0-100), Yellow ($100-500), Orange ($500-1000), Red ($1000+)
+- **Animated counters** - Smooth number transitions and pulsing effects
+- **Cost benchmarks** - Visual progress bars comparing to team lunch, SaaS subscriptions, etc.
+- **Dark mode** - Full dark mode support with auto-detection
+
+### Export & Sharing
+- **Share summary** - Copy formatted text for Slack/Teams/Email
+- **Meeting insights** - Post-meeting analysis with efficiency suggestions
+- **Cost projections** - Calculate annual costs for recurring meetings
+
+## Tech Stack
+
+- **Next.js 15** - React framework with App Router
+- **TypeScript** - Type-safe development
+- **Tailwind CSS** - Utility-first styling
+- **Zustand** - Lightweight state management
+- **Claude AI** - Salary estimation via Anthropic API
+- **OpenNext Cloudflare** - Edge deployment
+
+## Environment Variables
+
+To enable AI salary estimation, add your Anthropic API key:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+ANTHROPIC_API_KEY=your_api_key_here
+```
+
+## Development
+
+```bash
+# Install dependencies
+pnpm install
+
+# Run development server
 pnpm dev
-# or
-bun dev
+
+# Build for production
+pnpm build
+
+# Deploy to Cloudflare
+pnpm deploy
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Add Attendees** - Click "Add Attendee" and either:
+   - Enter salary/hourly rate manually
+   - Use AI estimation with job title and location
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Start Meeting** - Click "Start Meeting" to begin tracking
 
-## Webview & CORS Configuration
+3. **Monitor Costs** - Watch the real-time cost accumulate
 
-This template is configured with **universal CORS and iframe embedding** for maximum compatibility:
+4. **End Meeting** - Pause and click "End & Summary" to see insights
 
-### 🌐 Simple Universal Access
-- **All Routes & Assets**: Wildcard CORS allowing any origin, method, and headers
-- **No File Type Restrictions**: Works with any file format your project uses
-- **Iframe Ready**: `Content-Security-Policy: frame-ancestors *` allows embedding in any iframe
-- **Webview Ready**: Configured for embedding in any container or webview
-- **Development Friendly**: Works across any port, domain, or subdomain
+5. **Review History** - Access past meetings from the history icon
 
-### 🚀 Works Everywhere
-- Any localhost port (`localhost:3000`, `localhost:8080`, etc.)
-- Any subdomain pattern (`*.localhost`, `*.nullshot.dev`, etc.)
-- Webview containers (Electron, VSCode, browser iframes)
-- Cross-origin development scenarios
-- CDN and edge deployments
+## Keyboard Shortcuts
 
-### Environment Variables
+- `Space` - Start/Pause/Resume meeting
+- `R` - Reset meeting (with confirmation)
+- `Esc` - Close open modals
 
-Create a `.env.local` file for local development:
+## Features in Detail
 
-```bash
-# Next.js Environment (for Cloudflare deployment)
-NEXTJS_ENV=development
+### AI Salary Estimation
+Provide job details and get market-rate salary estimates:
+- Job title (e.g., "Senior Software Engineer")
+- Location (e.g., "San Francisco, CA")
+- Experience level (Entry/Mid/Senior/Lead)
+- Company size (Startup to Enterprise)
+- Industry (Tech, Finance, Healthcare, etc.)
 
-# Optional: Override CORS settings if needed
-# CORS_ALLOWED_ORIGINS=http://localhost:3000,https://yourdomain.com
-```
+Returns median salary with confidence level and typical range.
 
-## Learn More
+### Meeting Insights
+After ending a meeting, get:
+- Efficiency grade (A-F)
+- Cost comparisons (hours of junior dev work, team lunches, etc.)
+- Suggestions ("This could have been an email", "Consider fewer attendees")
+- Cost per minute breakdown
 
-To learn more about Next.js, take a look at the following resources:
+### Templates
+Save common meeting configurations:
+- All attendees with their rates
+- Overhead multiplier setting
+- Quick-load for recurring meetings
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+MIT
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
