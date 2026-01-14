@@ -84,7 +84,7 @@ export default function MeetingCalculator() {
     
     window.addEventListener('beforeunload', handleBeforeUnload);
     return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, [meeting.status]);
+  }, [meeting.status, handleReset]);
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -203,4 +203,5 @@ export default function MeetingCalculator() {
     </div>
   );
 }
+
 
